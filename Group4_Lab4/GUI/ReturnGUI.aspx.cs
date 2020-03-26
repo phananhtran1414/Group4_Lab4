@@ -117,22 +117,82 @@ namespace Group4_Lab4.GUI
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            if(GridView1.SelectedRow == null)
+            /*showMessageError(GridView1.SelectedRow.Cells[4].Text);*/
+            
+            if (GridView1.SelectedRow == null)
             {
                 showMessageError("Haven't seleted any book");
                 return;
             }
-            if (Calendar1.SelectedDate < DateTime.Parse(GridView1.SelectedRow.Cells[4].ToString()))
+            if (Calendar1.SelectedDate < DateTime.Parse(GridView1.SelectedRow.Cells[4].Text))
             {
                 showMessageError("ReturnDate must greater than BorrowedDate");
                 return;
             }
 
+            txtFineAmount.Text = AvaluateAmount().ToString("C2");
+            displayButtons(3);
+
+        }
+
+        protected void btnReturn_Click(object sender, EventArgs e)
+        {
+            CirculatedCopy cc = new CirculatedCopy();
+
+            cc.Id = int.Parse(GridView1.SelectedRow.Cells[1].Text);
+            cc.CopyNumber = int.Parse(GridView1.SelectedRow.Cells[2].Text);
+            cc.BorrowerNumber = int.Parse(GridView1.SelectedRow.Cells[3].Text);
+            cc.BorrowedDate = DateTime.Parse(GridView1.SelectedRow.Cells[4].Text);
+            cc.DueDate = DateTime.Parse(GridView1.SelectedRow.Cells[5].Text);
+            cc.ReturnedDate = Calendar1.SelectedDate;
+            cc.FineAmount = AvaluateAmount();
+            
+            Return(cc);
+
+            getData();
+            clearData();
+            displayButtons(1);
+        }
+
+        
+        private double AvaluateAmount()
+        {
+            double amount = 0;
+            if (Calendar1.SelectedDate > DateTime.Parse(GridView1.SelectedRow.Cells[5].Text))
+            {
+                amount += (int)(Calendar1.SelectedDate - DateTime.Parse(GridView1.SelectedRow.Cells[5].Text)).TotalDays;
+            }
+            return amount;
         }
 
 
+        private void Return(CirculatedCopy cc)
+        {
+            if (CirculatedCopyDAO.Update(cc))
+            {
+                showMessageError("Return completed <3");
 
+                Copy c = CopyDAO.GetCopy(cc.CopyNumber);
 
+                // update type = 'A' in copy
+                c.Type = 'A';
+                CopyDAO.Update(c);
+
+            }
+            else
+            {
+                showMessageError("Return Fail :<");
+            }
+        }
+
+        private void clearData()
+        {
+            txtFineAmount.Text = "";
+            txtName.Text = "";
+            txtBorrowerNumber.Text = "";
+            Calendar1.TodaysDate = DateTime.Now;
+            Calendar1.SelectedDate = DateTime.Now;
+        }
 
     }
 }
