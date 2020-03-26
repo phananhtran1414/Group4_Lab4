@@ -1,0 +1,202 @@
+﻿using Group4_Lab4.DTL;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Group4_Lab4.DAL
+{
+    public class CopyDAO
+    {
+        static string strConn = ConfigurationManager.ConnectionStrings["LibraryConnectionString"].ConnectionString;
+
+        public static DataTable GetDataTableCopy()
+        {
+            string cmd = "select * from Copy";
+            return DAO.GetDataTable(cmd);
+        }
+
+        public static DataTable GetDataTableCopy(int bookNum)
+        {
+            String cmd = String.Format("select * from Copy where" +
+                                " bookNumber = " + bookNum + "");
+
+            return DAO.GetDataTable(cmd);
+        }
+
+        public static ArrayList GetAllCopyNumbers(int bookNum)
+        {
+            ArrayList list = new ArrayList();
+            SqlConnection conn = new SqlConnection(strConn);
+            SqlCommand cmd = new SqlCommand("select * from Copy where" +
+                                " bookNumber = " + bookNum + "",conn);
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                int copyNumber = int.Parse(dr["copyNumber"].ToString());
+                list.Add(copyNumber);
+            }
+            conn.Close();
+
+            return list;
+        }
+
+        public static Copy GetCopy(int copyNumer)
+        {
+            Copy p = null;
+            SqlConnection conn = new SqlConnection(strConn);
+            SqlCommand cmd = new SqlCommand("Select * from Copy where copyNumber = @c", conn);
+
+            cmd.Parameters.AddWithValue("@c", copyNumer);
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                p = new Copy();
+                p.CopyNumber = copyNumer;
+                p.BookNumber = int.Parse(dr["bookNumber"].ToString());
+                p.SequenceNumber = int.Parse(dr["sequenceNumber"].ToString());
+                p.Type = char.Parse(dr["type"].ToString());
+                p.Price = double.Parse(dr["price"].ToString());
+
+            }
+            conn.Close();
+            return p;
+        }
+
+        public static int getAvailableCopy(int bookNumber)
+        {
+            Copy p = null;
+            SqlConnection conn = new SqlConnection(strConn);
+            SqlCommand cmd = new SqlCommand("SELECT count(*) as number  " +
+                "FROM [Copy]  " +
+                "WHERE bookNumber = @n " +
+                "AND type = 'A'", conn);
+            cmd.Parameters.AddWithValue("@n", bookNumber);
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                return int.Parse(dr["number"].ToString());
+            }
+            conn.Close();
+            return 0;
+        }
+
+
+        public static int GetSeqNumMaxOfBook(int bookNum)
+        {
+            DataTable dt = GetDataTableCopy(bookNum);
+            if (dt.Rows.Count == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return (int)(dt.Compute("max(sequenceNumber)", ""));
+            }
+        }
+
+        public static bool Insert(Copy c)
+        {
+            SqlCommand cmd = new SqlCommand("insert into Copy(bookNumber,sequenceNumber,type, price)" +
+                    "values (@a, @b, @c, @d)");
+
+            //cmd.Parameters.AddWithValue("@bookNumber", b.BookNumber);
+            cmd.Parameters.AddWithValue("@a", c.BookNumber);
+            cmd.Parameters.AddWithValue("@b", c.SequenceNumber);
+            cmd.Parameters.AddWithValue("@c", c.Type);
+            cmd.Parameters.AddWithValue("@d", c.Price);
+
+            return DAO.UpdateTable(cmd);
+        }
+
+        public static bool Update(Copy c)
+        {
+            SqlCommand cmd = new SqlCommand("update Copy set type=@t, price = @p where copyNumber = @c ");
+            cmd.Parameters.AddWithValue("@t", c.Type);
+            cmd.Parameters.AddWithValue("@p", c.Price);
+            cmd.Parameters.AddWithValue("@c", c.CopyNumber);
+            return DAO.UpdateTable(cmd);
+        }
+
+        public static Boolean Delete(Copy c)
+        {
+            if (CirculatedCopyDAO.Delete(c.CopyNumber))
+            {
+                SqlCommand cmd = new SqlCommand("delete Copy where copyNumber=@c");
+                cmd.Parameters.AddWithValue("@c", c.CopyNumber);
+                return DAO.UpdateTable(cmd);
+            }
+            else return false;
+        }
+
+        /*Cách chỉ 1 mình copyNumber làm khóa chính 
+        public static void addNewCopy(Book b, int i)
+        {
+            Copy c = new Copy();
+            Console.WriteLine("Copy number(generated by system): {0}", listCopy.Count + 1);
+            c.CopyNum = listCopy.Count + 1;
+            c.BookNum = b.BookNum;
+            Console.WriteLine("sequence number(generated by system): {0}", i);
+            c.SequenceNum = i;
+            c.Type = Utility.inputType();
+            c.Price = Utility.getDouble("Enter Price:");
+            listCopy.Add(c);
+        }*/
+
+        public static bool checkDouble(string price)
+        {
+            try
+            {
+                double result = double.Parse(price);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool checkType(char type)
+        {
+            if(char.ToUpper(type).Equals('A') || char.ToUpper(type).Equals('R'))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static ArrayList GetAllCopyByNums(int bookNum)
+        {
+            ArrayList list = new ArrayList();
+            SqlConnection conn = new SqlConnection(strConn);
+            SqlCommand cmd = new SqlCommand("select * from Copy where" +
+                                " bookNumber = " + bookNum + "", conn);
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Copy c = new Copy();
+                c.CopyNumber = int.Parse(dr["copyNumber"].ToString());
+                c.Type = char.Parse(dr["type"].ToString());
+                list.Add(c);
+            }
+            conn.Close();
+
+            return list;
+        }
+
+
+    }
+}
