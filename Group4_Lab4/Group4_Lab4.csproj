@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GUI\BookGUI.aspx" />
+    <Content Include="GUI\BorrowerGUI.aspx" />
     <Content Include="GUI\CopyGUI.aspx" />
     <Content Include="Site.Master" />
     <Content Include="Default.aspx" />
@@ -99,6 +100,13 @@
     </Compile>
     <Compile Include="GUI\BookGUI.aspx.designer.cs">
       <DependentUpon>BookGUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\BorrowerGUI.aspx.cs">
+      <DependentUpon>BorrowerGUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\BorrowerGUI.aspx.designer.cs">
+      <DependentUpon>BorrowerGUI.aspx</DependentUpon>
     </Compile>
     <Compile Include="GUI\CopyGUI.aspx.cs">
       <DependentUpon>CopyGUI.aspx</DependentUpon>
