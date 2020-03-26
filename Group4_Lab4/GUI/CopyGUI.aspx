@@ -39,7 +39,7 @@
 &nbsp;Title: <asp:TextBox ID="txtTitle" runat="server" Height="16px"></asp:TextBox>
 </p>
 <p>
-    The number of copies:
+    The number of copies:&nbsp;
     <asp:Label ID="lblNumberOfCopy" runat="server" Font-Names="Bradley Hand ITC" Font-Size="Larger" Text="0"></asp:Label>
 </p>
 <p>
