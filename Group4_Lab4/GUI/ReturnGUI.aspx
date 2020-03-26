@@ -55,6 +55,10 @@
         }
         .auto-style16 {
             height: 30px;
+            width: 443px;
+        }
+        .auto-style17 {
+            width: 443px;
         }
     </style>
 </asp:Content>
@@ -117,13 +121,13 @@
                         <DayStyle Width="14%" />
                         <NextPrevStyle Font-Size="8pt" ForeColor="White" />
                         <OtherMonthDayStyle ForeColor="#999999" />
-                        <SelectedDayStyle BackColor="#CC3333" ForeColor="White" />
+                        <SelectedDayStyle BackColor="#FF9999" ForeColor="Black" />
                         <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
                         <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
                         <TodayDayStyle BackColor="#CCCC99" />
                     </asp:Calendar>
                 </td>
-                <td>&nbsp;</td>
+                <td class="auto-style17">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style15">Fine amount: </td>
@@ -135,6 +139,6 @@
         </table>
     </p>
     <asp:Button ID="btnConfirm" runat="server" CssClass="auto-style11" Text="Confirm fine" Width="131px" OnClick="btnConfirm_Click" />
-    <asp:Button ID="btnReturn" runat="server" CssClass="auto-style14" Text="Return" Width="106px" />
+    <asp:Button ID="btnReturn" runat="server" CssClass="auto-style14" Text="Return" Width="106px" OnClick="btnReturn_Click" />
     <br />
 </asp:Content>

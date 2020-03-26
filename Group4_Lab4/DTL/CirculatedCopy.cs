@@ -22,6 +22,7 @@ namespace Group4_Lab4.DTL
         public int CopyNumber
         {
             get { return copyNumber; }
+            set { copyNumber = value; }
         }
 
         private int borrowerNumber;
@@ -29,6 +30,7 @@ namespace Group4_Lab4.DTL
         public int BorrowerNumber
         {
             get { return borrowerNumber; }
+            set { borrowerNumber = value; }
         }
 
 
@@ -61,6 +63,10 @@ namespace Group4_Lab4.DTL
             set { fineAmount = value; }
         }
 
+        public CirculatedCopy()
+        {
+
+        }
         public CirculatedCopy(int copyNumber, int borrowerNumber)
         {
             this.copyNumber = copyNumber;

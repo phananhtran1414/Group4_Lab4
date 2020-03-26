@@ -58,7 +58,7 @@
                 <td>
                     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DataObjectTypeName="Group4_Lab4.DTL.Book" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetDataTableBook" TypeName="Group4_Lab4.DAL.BookDAO" UpdateMethod="Update">
                         <FilterParameters>
-                            <asp:ControlParameter ControlID="txtTitle" Name="newparameter" PropertyName="Text" />
+                            <asp:ControlParameter ControlID="txtFilter" Name="newparameter" PropertyName="Text" />
                         </FilterParameters>
                         <SelectParameters>
                             <asp:ControlParameter ControlID="txtFilter" Name="title" PropertyName="Text" Type="String" />
