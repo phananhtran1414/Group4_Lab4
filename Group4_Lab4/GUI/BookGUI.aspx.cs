@@ -193,6 +193,7 @@ namespace Group4_Lab4.GUI
         {
             clear();
             displayButtons(1);
+            
         }
 
         

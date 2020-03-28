@@ -18,6 +18,7 @@ namespace Group4_Lab4.GUI
                 lblError.Visible = false;
                 txtName.Enabled = false;
                 txtFineAmount.Enabled = false;
+                Calendar1.TodaysDate = DateTime.Now;
                 displayButtons(1);
             }
             
@@ -35,6 +36,7 @@ namespace Group4_Lab4.GUI
                     btnConfirm.Enabled = false;
                     btnReturn.Enabled = false;
 
+                    Calendar1.Enabled = true;
                     break;
                 // to Confirm fine
                 case 2:
@@ -54,6 +56,7 @@ namespace Group4_Lab4.GUI
                     btnConfirm.Enabled = false;
                     btnReturn.Enabled = true;
 
+                    Calendar1.Enabled = false;
                     //lblError.Visible = false;
                     break;
 
@@ -63,7 +66,9 @@ namespace Group4_Lab4.GUI
 
         private void getData()
         {
-            ObjectDataSource1.FilterExpression = "BorrowerNumber = " + txtBorrowerNumber.Text + " and returnedDate is NULL";          
+            ObjectDataSource1.FilterExpression = "BorrowerNumber = " + txtBorrowerNumber.Text + " and returnedDate is NULL";
+            ObjectDataSource1.DataBind();
+
         }
 
         protected void btnCheckMember_Click(object sender, EventArgs e)
@@ -130,6 +135,7 @@ namespace Group4_Lab4.GUI
                 return;
             }
 
+            lblError.Text = "";
             txtFineAmount.Text = AvaluateAmount().ToString("C2");
             displayButtons(3);
 
@@ -149,9 +155,21 @@ namespace Group4_Lab4.GUI
             
             Return(cc);
 
-            getData();
-            clearData();
-            displayButtons(1);
+            if(int.Parse(lblNumBorrowedCopies.Text) > 1)
+            {
+                getData();
+                displayButtons(2);
+                btnCheckMember.Enabled = true;
+                Calendar1.Enabled = true;
+            }
+            else
+            {
+                clearData();
+                getData();
+                displayButtons(1);               
+            }
+
+            
         }
 
         
@@ -189,7 +207,6 @@ namespace Group4_Lab4.GUI
         {
             txtFineAmount.Text = "";
             txtName.Text = "";
-            txtBorrowerNumber.Text = "";
             Calendar1.TodaysDate = DateTime.Now;
             Calendar1.SelectedDate = DateTime.Now;
         }

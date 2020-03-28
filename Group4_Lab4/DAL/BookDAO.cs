@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Group4_Lab4.DAL
 {
     public class BookDAO
     {
+        static string strConn = ConfigurationManager.ConnectionStrings["LibraryConnectionString"].ConnectionString;
         public static DataTable GetDataTableBook()
         {
             string cmd = "select * from Book";
@@ -65,6 +67,13 @@ namespace Group4_Lab4.DAL
 
         public static Boolean Delete(Book b)
         {
+            SqlConnection conn = new SqlConnection(strConn);
+            SqlCommand cmd1 = new SqlCommand("Delete Reservation where bookNumber=@b", conn);
+            cmd1.Parameters.AddWithValue("@b", b.BookNumber);
+            conn.Open();
+            cmd1.ExecuteNonQuery();
+            conn.Close();
+
             DeleteAllCopiesByBookId(b);
 
             SqlCommand cmd = new SqlCommand("delete Book where bookNumber=@bookNumber");

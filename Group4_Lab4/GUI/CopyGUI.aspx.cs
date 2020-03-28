@@ -21,6 +21,7 @@ namespace Group4_Lab4.GUI
                 displayButtons(1);
                 txtBookNum.Enabled = false;
                 txtTitle.Enabled = false;
+                    
             }
 
 
