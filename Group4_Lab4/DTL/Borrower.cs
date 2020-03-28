@@ -67,6 +67,15 @@ namespace Group4_Lab4.DTL
             this.email = email;
 
         }
+        public Borrower(string name, char sex, string address, string telephone, string email)
+        {
+            this.name = name;
+            this.sex = sex;
+            this.telephone = telephone;
+            this.address = address;
+            this.email = email;
+
+        }
 
         public override string ToString()
         {
