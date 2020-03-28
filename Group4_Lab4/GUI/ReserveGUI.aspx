@@ -11,7 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
         <br />
-        <h3 style="font-size: 2em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reserve Book <asp:Label ID="lblError" runat="server" ForeColor="#FF3300"></asp:Label></h3>
+        <h3 style="font-size: 2em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reserve Book <asp:Label ID="lblError" runat="server" ForeColor="#FF9999"></asp:Label></h3>
 
     <p>
         Borrower number:
@@ -34,7 +34,8 @@
         <asp:Label ID="txtTotal" runat="server" Text="0"></asp:Label>
     </p>
     <p>
-        <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" ForeColor="Black">
+            <SelectedRowStyle BackColor="#FF9999" />
         </asp:GridView>
     </p>
     <p>
@@ -53,7 +54,7 @@
                         <DayStyle Width="14%" />
                         <NextPrevStyle Font-Size="8pt" ForeColor="White" />
                         <OtherMonthDayStyle ForeColor="#999999" />
-                        <SelectedDayStyle BackColor="#CC3333" ForeColor="White" />
+                        <SelectedDayStyle BackColor="#FF9999" ForeColor="White" />
                         <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
                         <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
                         <TodayDayStyle BackColor="#CCCC99" />

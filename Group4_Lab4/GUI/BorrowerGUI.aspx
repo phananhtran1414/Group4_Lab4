@@ -10,9 +10,8 @@
         }
         </style>
 </asp:Content>
-dnfjdhjjbcjbjjjjjjjjjjjjjjjjjjjjj
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <p class="list_mem"><b>List of members</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblError" runat="server" ForeColor="#FF3300"></asp:Label>
+    <p class="list_mem"><b>List of members</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblError" runat="server" ForeColor="#FF9999"></asp:Label>
     </p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     The number of members:&nbsp;
@@ -21,7 +20,7 @@ dnfjdhjjbcjbjjjjjjjjjjjjjjjjjjjjj
     <table style="width:100%;">
         <tr>
             <td rowspan="7">
-                <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ObjectDataSource2" Width="480px" OnDataBound="GridView2_DataBound" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" DataKeyNames="borrowerNumber">
+                <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ObjectDataSource2" Width="480px" OnDataBound="GridView2_DataBound" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" DataKeyNames="borrowerNumber" ForeColor="Black">
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
                     </Columns>
