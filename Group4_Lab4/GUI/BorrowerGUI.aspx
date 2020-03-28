@@ -20,10 +20,11 @@
     <table style="width:100%;">
         <tr>
             <td rowspan="7">
-                <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ObjectDataSource2" Width="480px">
-            <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
-            </Columns>
+                <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ObjectDataSource2" Width="480px" OnDataBound="GridView2_DataBound" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" DataKeyNames="borrowerNumber">
+                    <Columns>
+                        <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
+                    </Columns>
+                     <SelectedRowStyle BackColor="#FF9999" />
             <PagerStyle BackColor="White" />
         </asp:GridView>
         <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" DataObjectTypeName="Group4_Lab4.DTL.Borrower" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetDataTableBorrower" TypeName="Group4_Lab4.DAL.BorrowerDAO" UpdateMethod="Update"></asp:ObjectDataSource>
@@ -42,8 +43,8 @@
             <td class="auto-style5">Sex</td>
             <td class="auto-style4">
                 <asp:TextBox ID="txtSex" runat="server" Width="147px"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtSex" ErrorMessage="F or M" ForeColor="Black" ValidationExpression="[FM]"></asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSex" ErrorMessage="Sex required!"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtSex" ErrorMessage="F or M" ForeColor="Black" ValidationExpression="[FM]"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>

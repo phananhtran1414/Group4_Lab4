@@ -152,7 +152,14 @@ namespace Group4_Lab4.GUI
             Session["copyNumber"] = int.Parse(GridView1.SelectedRow.Cells[1].Text);
             txtType.Text = Server.HtmlDecode(GridView1.SelectedRow.Cells[4].Text);
             txtPrice.Text = Server.HtmlDecode(GridView1.SelectedRow.Cells[5].Text);
-
+            if (txtType.Text.Equals("&nbsp;"))
+            {
+                txtType.Text = "";
+            }
+            if (txtPrice.Text.Equals("&nbsp;"))
+            {
+                txtPrice.Text = "";
+            }
         }
 
         protected void GridView1_DataBound(object sender, EventArgs e)

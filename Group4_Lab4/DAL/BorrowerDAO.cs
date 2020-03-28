@@ -13,6 +13,17 @@ namespace Group4_Lab4.DAL
     public class BorrowerDAO
     {
         static string strConn = ConfigurationManager.ConnectionStrings["LibraryConnectionString"].ConnectionString;
+        static SqlConnection sqlconnection = new SqlConnection(strConn);
+
+        private static void DeleteTable(string sql)
+        {
+
+            SqlCommand sqlCommand = new SqlCommand(sql, sqlconnection);
+            sqlconnection.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlconnection.Close();
+
+        }
         public static DataTable GetDataTableBorrower()
         {
             string cmd = "select * from Borrower";
@@ -80,11 +91,14 @@ namespace Group4_Lab4.DAL
             return DAO.UpdateTable(cmd);
         }
 
-        public static Boolean Delete(Borrower b)
+        public static void Delete(Borrower b)
         {
-            SqlCommand cmd = new SqlCommand("delete Borrower where borrowerNumber=@borrowerNumber");
-            cmd.Parameters.AddWithValue("@borrowerNumber", b.BorrowerNumber);
-            return DAO.UpdateTable(cmd);
+            string sql1 = "delete CirculatedCopy where borrowerNumber=" + b.BorrowerNumber + "";
+            DeleteTable(sql1);
+            string sql2 = "delete Reservation where borrowerNumber=" + b.BorrowerNumber + "";
+            DeleteTable(sql2);
+            string sql3 = "delete Borrower where borrowerNumber="+ b.BorrowerNumber+"";
+            DeleteTable(sql3);
         }
 
     }

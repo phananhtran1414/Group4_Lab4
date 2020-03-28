@@ -94,6 +94,7 @@ namespace Group4_Lab4.GUI
         }
 
         static int check = -1;
+
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             check = 1;           //check = 1 là Add, = 2 là Edit;
@@ -177,6 +178,14 @@ namespace Group4_Lab4.GUI
             txtTitle.Text = GridView1.SelectedRow.Cells[2].Text;
             txtAuthors.Text = GridView1.SelectedRow.Cells[3].Text;
             txtPublisher.Text = GridView1.SelectedRow.Cells[4].Text;
+            if (txtAuthors.Text.Equals("&nbsp;"))
+            {
+                txtAuthors.Text = "";
+            }
+            if (txtPublisher.Text.Equals("&nbsp;"))
+            {
+                txtPublisher.Text = "";
+            }
         }
 
 
