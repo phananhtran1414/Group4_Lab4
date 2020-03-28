@@ -1,0 +1,119 @@
+﻿using Group4_Lab4.DAL;
+using Group4_Lab4.DTL;
+using System;
+using System.Data;
+
+namespace Group4_Lab4.GUI
+{
+    public partial class ReserveGUI : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void View(Borrower borrower)
+        {
+            DataTable dt = new DataTable();
+            dt = ReserveDAO.GetDataTableReserve(borrower.BorrowerNumber);
+            DataView dv = new DataView(dt);
+            GridView1.DataSource = dv;
+            GridView1.DataBind();
+        }
+
+        protected void btnCheckMember_Click(object sender, EventArgs e)
+        {
+            int borrowerNum;
+            if (DAO.checkInt(txtBorrowerNumber.Text) == false)
+            {
+                lblError.Text = "Borrower number must be a integer!";
+                /*MessageBox.Show("");
+                txtMemberCode.Focus();*/
+                return;
+            }
+            borrowerNum = int.Parse(txtBorrowerNumber.Text);
+            Borrower borrower = BorrowerDAO.GetBorrower(borrowerNum);
+            if (borrower != null)
+            {
+                txtName.Text = borrower.Name; //display name
+                View(borrower);
+                //MessageBox.Show("R".Equals("R") + "");
+                if (ReserveDAO.GetLastReserveOfBorrower(int.Parse(txtBorrowerNumber.Text)) != null
+                    && ReserveDAO.GetLastReserveOfBorrower(int.Parse(txtBorrowerNumber.Text)).Status.ToString().Equals("R")) //mean the last record still R
+                {
+                    //have a book in reserve
+                    /* MessageBox.Show("Oops! you have book in reserve queue! You can't reserve book until it's over");*/
+                    lblError.Text = "Oops! you have book in reserve queue! You can't reserve book until it's over";
+                    btnChkCondition.Enabled = false;
+                    txtBookNumber.Enabled = false;
+                    btnReserve.Enabled = false;
+                }
+                else
+                {
+                    lblError.Text = " ";
+                    btnChkCondition.Enabled = true;
+                    txtBookNumber.Enabled = true;
+                }
+            }
+            else
+            {
+                lblError.Text = "Oops, ID is not exist! Check again!";
+            }
+        }
+
+        protected void btnChkCondition_Click(object sender, EventArgs e)
+        {
+            if (txtBookNumber.Text == null || txtBookNumber.Text.Equals(""))
+            {
+                lblError.Text = "Book Number is not allow to be null";
+                txtBookNumber.Focus();
+            }
+            else if (DAO.checkInt(txtBookNumber.Text) == false)
+            {
+                lblError.Text = "Book Number is numberic";
+                txtBookNumber.Focus();
+            }
+            else
+            {
+                DataView dv = new DataView(BookDAO.GetDataTableBook());
+                dv.RowFilter = "bookNumber = " + txtBookNumber.Text;
+                if (dv.Count != 0) //book exist
+                {
+                    int availableCopy = CopyDAO.getAvailableCopy(int.Parse(txtBookNumber.Text)); //số lượng bản copy A
+                    if (availableCopy > 0)
+                    {
+                        lblError.Text = "This book having " + availableCopy + " copies available, you can borrow them";
+                    }
+                    else
+                    {
+                        btnReserve.Enabled = true;
+                    }
+                }
+                else
+                {
+                    lblError.Text = "Oops! this book number is not exist!";
+                }
+            }
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnReserve_Click(object sender, EventArgs e)
+        {
+            int borrowerNum = int.Parse(txtBorrowerNumber.Text);
+            Borrower borrower = BorrowerDAO.GetBorrower(borrowerNum);
+
+            Reservation rv = new Reservation(int.Parse(txtBorrowerNumber.Text), int.Parse(txtBookNumber.Text), Calendar1.SelectedDate);
+            if (ReserveDAO.Insert(rv))
+            {
+                View(borrower);
+            }
+            else
+            {
+                lblError.Text = "Reserve queue failse! ";
+            }
+        }
+    }
+}
