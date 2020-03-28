@@ -13,7 +13,18 @@ body {
 a:link, a:visited {
     color: white;
 }*/
-
+.auto-style1{
+    height:30px;
+}
+.auto-style4 {
+    width: 348px;
+}
+.auto-style5 {
+    margin-left: 100px;
+}
+.auto-style6 {
+    margin-left: 228px;
+}
 a:hover {
     color: white;
     text-decoration: none;
