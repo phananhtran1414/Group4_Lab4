@@ -7,9 +7,13 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     The number of members:&nbsp;
     <asp:Label ID="lblNumOfMem" runat="server" Text="0"></asp:Label>
-    <asp:GridView ID="GridView1" runat="server">
-    </asp:GridView>
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"></asp:ObjectDataSource>
     <p>
-        &nbsp;</p>
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ObjectDataSource1">
+            <Columns>
+                <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
+            </Columns>
+            <PagerStyle BackColor="White" />
+        </asp:GridView>
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DataObjectTypeName="Group4_Lab4.DTL.Borrower" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetDataTableBorrower" TypeName="Group4_Lab4.DAL.BorrowerDAO" UpdateMethod="Update"></asp:ObjectDataSource>
+    </p>
 </asp:Content>
