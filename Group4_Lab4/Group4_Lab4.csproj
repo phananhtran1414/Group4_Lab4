@@ -72,6 +72,7 @@
   <ItemGroup>
     <Content Include="GUI\BookGUI.aspx" />
     <Content Include="GUI\BorrowerGUI.aspx" />
+    <Content Include="GUI\BorrowGUI.aspx" />
     <Content Include="GUI\CopyGUI.aspx" />
     <Content Include="GUI\ReserveGUI.aspx" />
     <Content Include="GUI\ReturnGUI.aspx" />
@@ -86,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\BookDAO.cs" />
+    <Compile Include="DAL\BorrowDAO.cs" />
     <Compile Include="DAL\BorrowerDAO.cs" />
     <Compile Include="DAL\CirculatedCopyDAO.cs" />
     <Compile Include="DAL\CopyDAO.cs" />
@@ -110,6 +112,13 @@
     </Compile>
     <Compile Include="GUI\BorrowerGUI.aspx.designer.cs">
       <DependentUpon>BorrowerGUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\BorrowGUI.aspx.cs">
+      <DependentUpon>BorrowGUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\BorrowGUI.aspx.designer.cs">
+      <DependentUpon>BorrowGUI.aspx</DependentUpon>
     </Compile>
     <Compile Include="GUI\CopyGUI.aspx.cs">
       <DependentUpon>CopyGUI.aspx</DependentUpon>
