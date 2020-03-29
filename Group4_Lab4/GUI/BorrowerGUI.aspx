@@ -44,7 +44,7 @@
             <td class="auto-style4">
                 <asp:TextBox ID="txtSex" runat="server" Width="147px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSex" ErrorMessage="Sex required!"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtSex" ErrorMessage="F or M" ForeColor="Black" ValidationExpression="[FM]"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtSex" ErrorMessage="F or M" ForeColor="Black" ValidationExpression="[FMfm]"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>

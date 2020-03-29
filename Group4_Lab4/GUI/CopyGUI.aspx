@@ -67,7 +67,7 @@
             <td class="auto-style4">
                 <asp:TextBox ID="txtType" runat="server" Width="147px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtType" ErrorMessage="Required" ForeColor="#FF9999"></asp:RequiredFieldValidator>
-                &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtType" ErrorMessage="A or R" ValidationExpression="[AR]" ForeColor="#FF9999"></asp:RegularExpressionValidator>
+                &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtType" ErrorMessage="A or R" ValidationExpression="[ARar]" ForeColor="#FF9999"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
