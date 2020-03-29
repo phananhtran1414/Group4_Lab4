@@ -18,7 +18,10 @@ namespace Group4_Lab4.GUI
                 lblError.Visible = false;
                 txtName.Enabled = false;
                 txtFineAmount.Enabled = false;
+               
                 Calendar1.TodaysDate = DateTime.Now;
+                Calendar1.SelectedDate = DateTime.Now;
+                
                 displayButtons(1);
             }
             
