@@ -9,7 +9,11 @@ namespace Group4_Lab4.GUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                Calendar1.TodaysDate = DateTime.Now;
+                Calendar1.SelectedDate = DateTime.Now;
+            }
         }
         private void View(Borrower borrower)
         {
@@ -85,6 +89,7 @@ namespace Group4_Lab4.GUI
                     }
                     else
                     {
+                        lblError.Text = "";
                         btnReserve.Enabled = true;
                     }
                 }
@@ -109,6 +114,7 @@ namespace Group4_Lab4.GUI
             if (ReserveDAO.Insert(rv))
             {
                 View(borrower);
+                btnReserve.Enabled = false; 
             }
             else
             {
