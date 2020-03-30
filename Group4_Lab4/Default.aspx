@@ -48,15 +48,14 @@
 </span>
         <span class="style4">
 <p class="style5">
-        1) Tran Hoai Phan Anh: Register book...</p>
-</span>
-        <span class="style6">
-<p class="style7">
-        ...</p>
-</span>
+        1) Tran Hoai Phan Anh: Register book, Return Book</p>
+    <p class="style5">
+        2) Nguyên Minh Đức : Reserve Book</span></p>
+    <p class="style5">
+        3) Bùi Thị Thu Trang: Borrow Book</p>
         <span class="style8">
 <p>
-        5) Hoang Thi Hien: Reserve a book....</p>
+        5) Trần Thị Hiền : Borrower Book</p>
 </span>
     <p>
         &nbsp;</p>
