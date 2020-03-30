@@ -17,7 +17,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="Label1" runat="server" Text="Borrow a copy" Width="100px"></asp:Label>
-    <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red" Width="1000px"></asp:Label>
+    <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="#FF9999" Width="1000px"></asp:Label>
     <br />
     <table style="width:100%;">
         <tr>

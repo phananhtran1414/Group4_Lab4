@@ -3,6 +3,7 @@ using Group4_Lab4.DTL;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -114,8 +115,8 @@ namespace Group4_Lab4.GUI
         {
             foreach (GridViewRow row in GridView1.Rows)
             {
-                row.Cells[4].Text = DateTime.Parse((row.Cells[4].Text.ToString())).ToString("dd/MM/yyyy");
-                row.Cells[5].Text = DateTime.Parse((row.Cells[5].Text.ToString())).ToString("dd/MM/yyyy");
+                row.Cells[4].Text = DateTime.Parse((row.Cells[4].Text.ToString())).ToString("dd-MM-yyyy");
+                row.Cells[5].Text = DateTime.Parse((row.Cells[5].Text.ToString())).ToString("dd-MM-yyyy");
             }
 
             lblNumBorrowedCopies.Text = GridView1.Rows.Count.ToString();
@@ -143,7 +144,8 @@ namespace Group4_Lab4.GUI
 
             //string date = DateTime.Parse((GridView1.SelectedRow.Cells[4].Text.ToString())).ToString("MM/dd/yyyy");
             //DateTime borrowedDate = DateTime.Parse(date);
-            if (Calendar1.SelectedDate < DateTime.Parse(GridView1.SelectedRow.Cells[4].Text))
+            DateTime borrowedDate = DateTime.ParseExact(GridView1.SelectedRow.Cells[4].Text, "dd-MM-yyyy", CultureInfo.CurrentCulture);
+            if (Calendar1.SelectedDate < borrowedDate)
             {
                 //showMessageError("ReturnDate must greater than BorrowedDate " + date  + " : " + borrowedDate);  //Check ở đây này
                 showMessageError("ReturnDate must greater than BorrowedDate ");
@@ -159,13 +161,17 @@ namespace Group4_Lab4.GUI
         protected void btnReturn_Click(object sender, EventArgs e)
         {
             GridView1.DataBind();
+
+
             CirculatedCopy cc = new CirculatedCopy();
+
+
 
             cc.Id = int.Parse(GridView1.SelectedRow.Cells[1].Text);
             cc.CopyNumber = int.Parse(GridView1.SelectedRow.Cells[2].Text);
             cc.BorrowerNumber = int.Parse(GridView1.SelectedRow.Cells[3].Text);
-            cc.BorrowedDate = DateTime.Parse(GridView1.SelectedRow.Cells[4].Text);
-            cc.DueDate = DateTime.Parse(GridView1.SelectedRow.Cells[5].Text);
+            cc.BorrowedDate = DateTime.ParseExact(GridView1.SelectedRow.Cells[4].Text, "dd-MM-yyyy", CultureInfo.CurrentCulture); ;
+            cc.DueDate = DateTime.ParseExact(GridView1.SelectedRow.Cells[5].Text, "dd-MM-yyyy", CultureInfo.CurrentCulture); ;
             cc.ReturnedDate = Calendar1.SelectedDate;
             cc.FineAmount = AvaluateAmount();
             
@@ -196,9 +202,13 @@ namespace Group4_Lab4.GUI
 
             //string date = DateTime.Parse((GridView1.SelectedRow.Cells[5].Text.ToString())).ToString("MM/dd/yyyy");
             //DateTime DueDate = DateTime.Parse(date);
-            if (Calendar1.SelectedDate > DateTime.Parse(GridView1.SelectedRow.Cells[5].Text))
+            DateTime returnDate = Calendar1.SelectedDate;
+            //DateTime DueDate = DateTime.Parse(GridView1.SelectedRow.Cells[5].Text);
+            DateTime DueDate = DateTime.ParseExact(GridView1.SelectedRow.Cells[5].Text, "dd-MM-yyyy", CultureInfo.CurrentCulture);
+
+            if (Calendar1.SelectedDate > DueDate)
             {
-                amount += (int)(Calendar1.SelectedDate - DateTime.Parse(GridView1.SelectedRow.Cells[5].Text)).TotalDays;
+                amount += (int)(Calendar1.SelectedDate - DueDate).TotalDays;
             }
             return amount;
         }

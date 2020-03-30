@@ -29,8 +29,15 @@ namespace Group4_Lab4.GUI
             GridView1.DataSource = dv;
             GridView1.DataBind();
 
-            GridViewRow row = GridView1.Rows[0];
-            row.Cells[3].Text = DateTime.Parse((row.Cells[3].Text.ToString())).ToString("dd/MM/yyyy");
+            try
+            {
+                GridViewRow row = GridView1.Rows[0];
+                row.Cells[3].Text = DateTime.Parse((row.Cells[3].Text.ToString())).ToString("dd/MM/yyyy");
+            }
+            catch
+            {
+
+            }
         }
 
         protected void btnCheckMember_Click(object sender, EventArgs e)
