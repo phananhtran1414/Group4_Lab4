@@ -8,6 +8,11 @@
             font-family: "Segoe UI";
             font-size: large;
         }
+        .auto-style7 {
+            font-family: "Segoe UI";
+            font-size: large;
+            margin-left: 80px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
@@ -15,5 +20,15 @@
         About
     </h2>
     <p class="style1">
-        <strong>C# course from 16 Feb to 05 Apr 2020</strong></p>
+        Author: SE1311, Group 4 - March 2020</p>
+    <p class="auto-style7">
+        1. Nguyễn Minh Đức - HE130913</p>
+    <p class="auto-style7">
+        2. Trần Hoài Phan Anh - HE130193</p>
+    <p class="auto-style7">
+        3. Trần Thị Hiền - HE130251</p>
+    <p class="auto-style7">
+        4. Bùi Thị Thu Trang - HE130155</p>
+    <p class="auto-style7">
+        &nbsp;</p>
 </asp:Content>
