@@ -2,6 +2,7 @@
 using Group4_Lab4.DTL;
 using System;
 using System.Data;
+using System.Web.UI.WebControls;
 
 namespace Group4_Lab4.GUI
 {
@@ -19,9 +20,17 @@ namespace Group4_Lab4.GUI
         {
             DataTable dt = new DataTable();
             dt = ReserveDAO.GetDataTableReserve(borrower.BorrowerNumber);
+
+/*            foreach (DataRow dr in dt.Rows)
+            {
+                dr[3] = DateTime.Parse((dr[3].ToString())).ToString("dd/MM/yyyy");
+            }*/
             DataView dv = new DataView(dt);
             GridView1.DataSource = dv;
             GridView1.DataBind();
+
+            GridViewRow row = GridView1.Rows[0];
+            row.Cells[3].Text = DateTime.Parse((row.Cells[3].Text.ToString())).ToString("dd/MM/yyyy");
         }
 
         protected void btnCheckMember_Click(object sender, EventArgs e)
