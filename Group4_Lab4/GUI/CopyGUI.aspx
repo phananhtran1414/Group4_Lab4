@@ -83,7 +83,7 @@
     <asp:Button ID="btnAdd" runat="server" CssClass="auto-style8" Text="Add" Width="72px" OnClick="btnAdd_Click" />
     <asp:Button ID="btnEdit" runat="server" CssClass="auto-style5" Text="Edit" Width="71px" OnClick="btnEdit_Click" />
     <asp:Button ID="btnSave" runat="server" CssClass="auto-style6" Text="Save" Width="72px" OnClick="btnSave_Click" />
-    <asp:Button ID="btnCancel" runat="server" CssClass="auto-style7" Text="Cancel" OnClick="btnCancel_Click" />
+    <asp:Button ID="btnCancel" runat="server" CssClass="auto-style7" Text="Cancel" OnClick="btnCancel_Click" CausesValidation="False" />
 </p>
 <p>
     &nbsp;</p>

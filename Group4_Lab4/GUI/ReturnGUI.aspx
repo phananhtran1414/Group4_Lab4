@@ -96,7 +96,7 @@
     <asp:Label ID="lblNumBorrowedCopies" runat="server" Font-Names="Bradley Hand ITC" Font-Size="Larger" Text="0"></asp:Label>
     </p>
     <p class="auto-style13">
-        <asp:GridView ID="GridView1" runat="server" Width="446px" CssClass="auto-style12" AllowPaging="True" AllowSorting="True" DataKeyNames="ID" DataSourceID="ObjectDataSource1" ForeColor="Black" OnDataBound="GridView1_DataBound" PageSize="5">
+        <asp:GridView ID="GridView1" runat="server" Width="446px" CssClass="auto-style12"  AllowPaging="True" AllowSorting="True" DataKeyNames="ID" DataSourceID="ObjectDataSource1" ForeColor="Black" OnDataBound="GridView1_DataBound" PageSize="5">
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
             </Columns>

@@ -161,7 +161,7 @@ namespace Group4_Lab4.GUI
             if(int.Parse(lblNumBorrowedCopies.Text) > 1)
             {
                 getData();
-                displayButtons(2);
+                displayButtons(1);
                 btnCheckMember.Enabled = true;
                 Calendar1.Enabled = true;
             }
