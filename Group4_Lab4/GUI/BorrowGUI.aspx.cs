@@ -140,6 +140,11 @@ namespace Group4_Lab4.GUI
 
         protected void GridView1_DataBound(object sender, EventArgs e)
         {
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                row.Cells[3].Text = DateTime.Parse((row.Cells[3].Text.ToString())).ToString("dd/MM/yyyy");
+                row.Cells[4].Text = DateTime.Parse((row.Cells[4].Text.ToString())).ToString("dd/MM/yyyy");
+            }
             lblNumberCopy.Text = (GridView1.Rows.Count.ToString());
         }
 
