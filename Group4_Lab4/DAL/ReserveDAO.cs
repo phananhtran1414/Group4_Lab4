@@ -29,7 +29,7 @@ namespace Group4_Lab4.DAL
 
         internal static DataTable GetDataTableReserve(int borrowerNumber)
         {
-            string cmd = "SELECT top 1  * FROM [Reservation] where borrowerNumber = " + borrowerNumber + " order by ID desc ";
+            string cmd = "SELECT top 1  * FROM [Reservation] where borrowerNumber = " + borrowerNumber + " and status = 'R' order by ID desc";
             return DAO.GetDataTable(cmd);
         }
 
