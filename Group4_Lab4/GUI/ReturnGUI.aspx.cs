@@ -2,6 +2,7 @@
 using Group4_Lab4.DTL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -111,6 +112,12 @@ namespace Group4_Lab4.GUI
 
         protected void GridView1_DataBound(object sender, EventArgs e)
         {
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                row.Cells[4].Text = DateTime.Parse((row.Cells[4].Text.ToString())).ToString("dd/MM/yyyy");
+                row.Cells[5].Text = DateTime.Parse((row.Cells[5].Text.ToString())).ToString("dd/MM/yyyy");
+            }
+
             lblNumBorrowedCopies.Text = GridView1.Rows.Count.ToString();
             if (lblNumBorrowedCopies.Text.Equals("0"))
             {
@@ -127,14 +134,19 @@ namespace Group4_Lab4.GUI
         {
             /*showMessageError(GridView1.SelectedRow.Cells[4].Text);*/
             
+            GridView1.DataBind();
             if (GridView1.SelectedRow == null)
             {
                 showMessageError("Haven't seleted any book");
                 return;
             }
+
+            //string date = DateTime.Parse((GridView1.SelectedRow.Cells[4].Text.ToString())).ToString("MM/dd/yyyy");
+            //DateTime borrowedDate = DateTime.Parse(date);
             if (Calendar1.SelectedDate < DateTime.Parse(GridView1.SelectedRow.Cells[4].Text))
             {
-                showMessageError("ReturnDate must greater than BorrowedDate");
+                //showMessageError("ReturnDate must greater than BorrowedDate " + date  + " : " + borrowedDate);  //Check ở đây này
+                showMessageError("ReturnDate must greater than BorrowedDate ");
                 return;
             }
 
@@ -146,6 +158,7 @@ namespace Group4_Lab4.GUI
 
         protected void btnReturn_Click(object sender, EventArgs e)
         {
+            GridView1.DataBind();
             CirculatedCopy cc = new CirculatedCopy();
 
             cc.Id = int.Parse(GridView1.SelectedRow.Cells[1].Text);
@@ -179,6 +192,10 @@ namespace Group4_Lab4.GUI
         private double AvaluateAmount()
         {
             double amount = 0;
+            GridView1.DataBind();
+
+            //string date = DateTime.Parse((GridView1.SelectedRow.Cells[5].Text.ToString())).ToString("MM/dd/yyyy");
+            //DateTime DueDate = DateTime.Parse(date);
             if (Calendar1.SelectedDate > DateTime.Parse(GridView1.SelectedRow.Cells[5].Text))
             {
                 amount += (int)(Calendar1.SelectedDate - DateTime.Parse(GridView1.SelectedRow.Cells[5].Text)).TotalDays;
