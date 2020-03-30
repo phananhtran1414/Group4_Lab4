@@ -137,14 +137,14 @@ namespace Group4_Lab4.GUI
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            clear();
             displayButtons(1);
-            GridView2.DataBind();
         }
 
-        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        protected void GridView2_SelectedIndexChanged1(object sender, EventArgs e)
         {
             Session["borrowerNumber"] = int.Parse(GridView2.SelectedRow.Cells[1].Text);
-            
+
             txtName.Text = GridView2.SelectedRow.Cells[2].Text;
             txtSex.Text = GridView2.SelectedRow.Cells[3].Text;
             txtAddress.Text = GridView2.SelectedRow.Cells[4].Text;
@@ -164,7 +164,7 @@ namespace Group4_Lab4.GUI
             }
         }
 
-        protected void GridView2_DataBound(object sender, EventArgs e)
+        protected void GridView2_DataBound1(object sender, EventArgs e)
         {
             lblNumOfMem.Text = GridView2.Rows.Count.ToString();
         }

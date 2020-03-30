@@ -20,13 +20,12 @@
     <table style="width:100%;">
         <tr>
             <td rowspan="7">
-                <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ObjectDataSource2" Width="480px" OnDataBound="GridView2_DataBound" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" DataKeyNames="borrowerNumber" ForeColor="Black">
+                <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" DataKeyNames="borrowerNumber" DataSourceID="ObjectDataSource2" ForeColor="Black" OnDataBound="GridView2_DataBound1" OnSelectedIndexChanged="GridView2_SelectedIndexChanged1">
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
                     </Columns>
-                     <SelectedRowStyle BackColor="#FF9999" />
-            <PagerStyle BackColor="White" />
-        </asp:GridView>
+                    <SelectedRowStyle BackColor="#FF9999" />
+                </asp:GridView>
         <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" DataObjectTypeName="Group4_Lab4.DTL.Borrower" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetDataTableBorrower" TypeName="Group4_Lab4.DAL.BorrowerDAO" UpdateMethod="Update"></asp:ObjectDataSource>
             </td>
         </tr>
@@ -73,6 +72,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" CausesValidation="False" />
     </p>
 </asp:Content>
