@@ -25,6 +25,13 @@
         .auto-style8 {
             margin-left: 80px;
         }
+        .auto-style9 {
+            width: 313px;
+        }
+        .auto-style10 {
+            height: 39px;
+            width: 313px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -55,7 +62,7 @@
                     </asp:GridView>
                 </td>
                 <td>&nbsp;</td>
-                <td>
+                <td class="auto-style9">
                     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DataObjectTypeName="Group4_Lab4.DTL.Book" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetDataTableBook" TypeName="Group4_Lab4.DAL.BookDAO" UpdateMethod="Update">
                         <FilterParameters>
                             <asp:ControlParameter ControlID="txtFilter" Name="newparameter" PropertyName="Text" />
@@ -68,20 +75,20 @@
             </tr>
             <tr>
                 <td class="auto-style2">Title</td>
-                <td class="auto-style2">
+                <td class="auto-style10">
                     <asp:TextBox ID="txtTitle" runat="server" Width="200px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtTitle" ErrorMessage="Title Required" ForeColor="#FF9999"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td>Authors</td>
-                <td>
+                <td class="auto-style9">
                     <asp:TextBox ID="txtAuthors" runat="server" Width="200px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td>Publisher</td>
-                <td>
+                <td class="auto-style9">
                     <asp:TextBox ID="txtPublisher" runat="server" Width="200px"></asp:TextBox>
                 </td>
             </tr>
