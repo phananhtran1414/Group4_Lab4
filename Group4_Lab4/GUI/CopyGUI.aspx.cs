@@ -180,5 +180,10 @@ namespace Group4_Lab4.GUI
             txtType.Text = "";
 
         }
+
+        protected void txtBookNum_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
