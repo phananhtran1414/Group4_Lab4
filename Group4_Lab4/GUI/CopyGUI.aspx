@@ -35,7 +35,7 @@
 </p>
 <p>
     Book number:
-    <asp:TextBox ID="txtBookNum" runat="server" Height="16px"></asp:TextBox>
+    <asp:TextBox ID="txtBookNum" runat="server" Height="16px" OnTextChanged="txtBookNum_TextChanged"></asp:TextBox>
 &nbsp;Title: <asp:TextBox ID="txtTitle" runat="server" Height="16px"></asp:TextBox>
 </p>
 <p>
